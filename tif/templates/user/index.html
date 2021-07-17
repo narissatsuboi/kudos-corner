@@ -4,7 +4,7 @@
 
     <!-- switch out variables in here for variables passed in in the views -->
 
-    <h1>Welcome to Kudos Corner, {{ user.getName() }}</h1>
+    <h1>Welcome to Kudos Corner, {{ name }}</h1>
 
     <div id="personal-stats">
         <p>Kudos sent: {{ user.getKudosSent() }}</p>
@@ -20,7 +20,7 @@
     </div>
 
     <div id="prize">
-        <p>This weeks prize is {{ prize.getDescription() }} </p>
+        <p>This week's prize is {{ prize.getDescription() }} </p>
     </div>
 
 

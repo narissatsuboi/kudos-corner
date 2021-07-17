@@ -3,28 +3,20 @@
 {% block content %}
 
     <div id="identity">
-        <h1>Welcome to your profile, {{ user.getName() }}</h1>
+        <h1>Welcome to your profile, {{ name }}</h1>
         <h3>{{ user.organisation.name }}</h3>
     </div> 
 
     <div id="stats">
         <h2>Your Stats</h2>
-        <p>Current rank: {{ user.getRank() }}</p>
-        <p>Prizes won: {{ user.getPrizeCount() }}</p>
+        <p>Current rank: {{ rank }}</p>
+        <p>Prizes won: {{ prize_count }}</p>
     </div>
 
     <div id="current-kudos">
         <h2>Kudos this week</h1>
         <ul>
-        {% for kudo in user.getKudos() %}
-            <li>
-                <p>{{ kudo.getContent() }}</p>
-                <form action=# method="POST">
-                    <label for="rating">Rating</label>
-                    <p id="rating">Stars go here...</p>
-                </form>
-            </li>
-        {% endfor %}
+        
         </ul>
     </div>
 
