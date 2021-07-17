@@ -1,6 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
-class User(models.Model):
+# https://learndjango.com/tutorials/django-custom-user-model
+
+class CustomUser(AbstractUser):
 	# user info
 	name = models.CharField(max_length = 50)
 	organisation = models.IntegerField(default = 0)
@@ -9,17 +12,15 @@ class User(models.Model):
 	# user statistics
 	ranking = models.IntegerField(default = 0)
 	kudosSent = models.IntegerField(default = 0)
+	kudosReceived = models.IntegerField(default = 0)
 	starsReceived = models.IntegerField(default = 0)
 	prizeCount = models.IntegerField(default = 0)
 
 	def __str__(self):
-		return self.organisation + " - " + self.name 
+		return str(self.organisation) + " - " + self.name 
 
 class Organisation(models.Model):
 	name = models.CharField(max_length = 50)
-	#admin
-	#employees
-
 	def __str__(self):
 		return self.name
 
