@@ -18,16 +18,14 @@
         <h2>Your Kudos</h1>
         <ul>
             {% for kudo in kudos %}
-                <li>From: {kudo.sender}, Message: {{kudo.message}}</li>
-               <button type="submit">Rate</button>
+                <li>Message: {{kudo.message}}</li>
+               
+                <button type="submit">Rate</button>
             {% endfor %}
         </ul>
     </div>
-
-
 </div>
-
-
+    
     <div id="send-kudos">
         <h2>Send Kudos</h2>
         <form action="#" method="POST">

@@ -2,9 +2,12 @@ from .models import CustomUser, Organisation, Prize, Kudos
 from django.http import HttpResponse
 from django.shortcuts import render
 
+def login(request):
+	return render(request, "login.html")
+
 def dashboard(request):
 	# if not request.user.is_authenticated():
-	# 	return #something something 404 error
+	# 	return render(request, "login.html")
 
 	user_context = {
 		# "name": request.user.name,
@@ -14,8 +17,8 @@ def dashboard(request):
 		# "currentPrize"
 		"users": CustomUser.objects.order_by('-starsReceived')[:3],
 		"name": "Link",
-		"kudosSent": 200,
-		"kudosReceived": 170,
+		# "kudosSent": 200,
+		# "kudosReceived": 170,
 		"starsReceived": 4,
 		"ranking": "1st",
 		"currentPrize": "£100",
