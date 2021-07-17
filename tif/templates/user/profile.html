@@ -2,6 +2,7 @@
 
 {% block content %}
 
+<div class="wrapper">
     <div id="identity">
         <h1>Welcome to your profile, {{ name }}</h1>
         <h3>{{ user.organisation.name }}</h3>
@@ -10,27 +11,39 @@
     <div id="stats">
         <h2>Your Stats</h2>
         <p>Current ranking: {{ rank }}</p>
-        <p>Prizes won: {{ prize_count }}</p>
+        <p>Prizes won: {{ prizeCount }}</p>
     </div>
 
-    <div id="current-kudos">
-        <h2>Kudos this week</h1>
+    <div id="rate-kudos">
+        <h2>Your Kudos</h1>
         <ul>
-        
+            {% for kudo in kudos %}
+                <li>From: {kudo.sender}, Message: {{kudo.message}}</li>
+               <button type="submit">Rate</button>
+            {% endfor %}
         </ul>
     </div>
 
+
+</div>
+
+
     <div id="send-kudos">
+        <h2>Send Kudos</h2>
         <form action="#" method="POST">
             <label for="recipient">Recipient</label>
-            <input type="text" name="recipient" id="recipient">
-            
+            <select name="recepient" id="recepient">
+                {% for user in users %}
+                    <option value={{user.name}}>{{user.name}}</option>
+                {% endfor %}
+            </select>
             <label for="message">Message</label>
             <input type="text" name="message" id="message">
-            
             <button type="submit">Send</button>
         </form>
     </div>
+
+</div>
 
     
 {% endblock content %}

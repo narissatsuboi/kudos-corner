@@ -1,3 +1,4 @@
+import datetime
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
@@ -25,8 +26,9 @@ class Organisation(models.Model):
 		return self.name
 
 class Kudos(models.Model):
-	date = models.DateField()
+	date = models.DateField(default = datetime.date.today)
 	sender = models.IntegerField(default = 0)
+	message = models.CharField(max_length = 100, default="")
 	recipient = models.IntegerField(default = 0)
 	organisation = models.IntegerField(default = 0)
 

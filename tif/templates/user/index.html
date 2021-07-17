@@ -2,24 +2,53 @@
 
 {% block content %}
 
-    <h1>Welcome to Kudos Korner, {{ name }}</h1>
+    <div class="container">
+        <div class="leaderboard">
+            <h2>Leaderboard</h2>
+            
+            <!-- <p>Personal Rank: {{ ranking }}</p> -->
 
-    <div id="personal-stats">
-        <p>Kudos sent: {{ kudos_sent }}</p>
-        <p>Kudos received: {{ kudos_received }}</p>
+            <table id="leaderboard-table">
+                <thead>
+                    <tr>
+                        <td>Rank</td>
+                        <td>Name</td>
+                        <td>Stars</td>
+                    </tr>
+                </thead>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.ranking }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.starsReceived }}</td>
+                    </tr>
+                {% endfor %}
+                {% if rank > 3 %}
+                    <tr>
+                        <td>.</td>
+                        <td>.</td>
+                        <td>.</td>
+                    </tr>
+                    <tr>
+                        <td>{{rank}}</td>
+                        <td>{{name}}</td>
+                        <td>{{starsReceived}}</td>
+                    </tr>
+                {% endif %}
+            </table>
+        </div>
+
+        <div class="prize">
+            <h3>This week's prize </h3>
+            <h2>{{ currentPrize }} </h2>
+        </div>
+
+        <div class="kudos">
+            <h3 id="sent">Kudos sent: {{ kudosSent }}</h3>
+            <h3 id="received">Kudos received: {{ kudosReceived }}</h3>
+        </div>
     </div>
 
-    <div id="ranking-visuals">
-        <p>Personal Rank: {{ ranking }}</p>
-
-        <table>
-            <p>Leaderboard goes here:</p>
-        </table>
-    </div>
-
-    <div id="prize">
-        <p>This week's prize is {{ current_prize }} </p>
-    </div>
 
     
 {% endblock content %}

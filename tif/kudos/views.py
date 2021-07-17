@@ -1,30 +1,51 @@
 from .models import CustomUser, Organisation, Prize, Kudos
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import User
-from .models import Prize
 
 def dashboard(request):
-	# if not request.user.isAuthenticated:
-	#	return #something something 404 error
+	# if not request.user.is_authenticated():
+	# 	return #something something 404 error
 
 	user_context = {
 		# "name": request.user.name,
-		# "kudos_sent": request.user.kudosSent,
-		# "kudos_received": request.user.kudosReceived,      NOT YET IN MODEL
-		# "current_prize"
+		# "kudosSent": request.user.kudosSent,
+		# "kudosReceived": request.user.kudosReceived,      
+		# "starsReceived": request.user.starsReceived
+		# "currentPrize"
+		"users": CustomUser.objects.order_by('-starsReceived')[:3],
 		"name": "Link",
-		"kudos_sent": 200,
-		"kudos_received": 170,
+		"kudosSent": 200,
+		"kudosReceived": 170,
+		"starsReceived": 4,
 		"ranking": "1st",
-		"current_prize": "£100"
+		"currentPrize": "£100",
 	}
+	
+
+	# ok, so, i think we should list what we still need to do
+	# my list:
+	# i'll try update the rankings whenever the site is called just to be sure
+	# are you still planning on working with the css? or the forms haha
+	# hmm, i think the most important part is getting the forms to work
+	# but for the sending kudos thing, how do you decide who to send it to?
+	# username? email? id? 
+	
+	# i guess we can have a dropdown that displays usernames, but sends id to the db
+	# not sure how to do it in here tho
+	# ok
+
+
+	# my list rn
+	# CSS for the whole thing (basic, implement CSS grid and some borders around elements)
+	# figure out forms and how to post to db from a form in django
+	# log in page
+
 
 	org_context = {
 		# "name":
-		# "current_prize":
+		# "currentPrize":
 		"name": "myOrg",
-		"current_prize": "£100"
+		"currentPrize": "£100"
 	}
 
 # Switch these two to toggle user/organisation pages
@@ -44,16 +65,21 @@ def profile(request):
 	user_context = {
 		# "name": request.user.name,
 		# "rank": request.user.ranking,
-		# "prize_count": request.user.prizeCount
+		# "prizeCount": request.user.prizeCount
+		"users": CustomUser.objects.all(),
+		"kudos": Kudos.objects.filter(recipient=1),
 		"name": "Link",
 		"rank": "1st",
-		"prize_count": 2,	
+		"prizeCount": 2,	
 	}
+	
+
+
 
 	org_context = {
 		# "name": request.user.name,
 		# "prize": request.prize.description   ????
-		# account_type
+		# accountType
 		# employees
 		"name": "My organization",
 		"prize": "£100"
@@ -72,18 +98,9 @@ def profile(request):
 
 
 
-
-
-
-
-# to research
-# csrf mechanism for the form
-
-
 # If a user is logged in (aka authenticated), then you can get their info by
 # accessing variables of (the CustomUser class) request.user
 # so name would be request.user.name and rank would be request.user.ranking
-
 
 # there is a way to force people to have to log in first, but i'll try and see if i can
 # do something on that on a different branch for now, you can temporarily hardcode values
