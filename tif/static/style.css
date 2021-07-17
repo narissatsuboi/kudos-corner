@@ -1,4 +1,82 @@
-#main-content {
-    text-align: center;
+
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    /* grid-auto-rows: minmax(100px, auto); */
+  }
+
+/* #leaderboard {
+    grid-column: 1 / 3;
+    grid-row: 1;
 }
+
+#prize {
+    grid-column: 2 / 4;
+    grid-row: 2 / 3;
+}
+
+#personal-stats {
+    grid-column: 1;
+    grid-row: 2 / 5;
+} */
+
+.leaderboard {
+    border: 1px solid black;
+    border-radius: 10px;;
+
+}
+
+
+
+#sent {
+    border-right: 1px solid black; 
+}
+
+#received {
+    
+}
+
+
+
+.container {
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr 1fr; 
+    grid-template-rows: 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+      "leaderboard leaderboard prize prize"
+      "leaderboard leaderboard kudos kudos"; 
+}
+
+.leaderboard { 
+    grid-area: leaderboard; 
+    margin: 20px;
+   
+}
+
+
+.prize { 
+    padding-top: 100px;
+    grid-area: prize;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+
+.kudos { 
+    grid-area: kudos; 
+    position: relative;
+    top: 100px;
+    display: flex;
+    flex-direction: row;
+    border: 1px black solid;
+    border-radius: 10px;
+    margin: 20px;
+}
+
 
