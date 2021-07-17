@@ -1,3 +1,4 @@
+from .models import CustomUser, Organisation, Prize, Kudos
 from django.http import HttpResponse
 
 def dashboard(request):
