@@ -19,11 +19,17 @@
         {% for kudo in user.getKudos() %}
             <li>
                 <p>{{ kudo.getContent() }}</p>
-                <p>Rating: </p>
-                <p>Stars go here...</p>
+                <form action=# method="POST">
+                    <label for="rating">Rating</label>
+                    <p id="rating">Stars go here...</p>
+                </form>
             </li>
         {% endfor %}
         </ul>
+    </div>
+
+    <div id="send-kudos">
+        <form action="#" method="POST"></form>
     </div>
 
     

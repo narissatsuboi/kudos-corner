@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Welcome to Kudos Corner, {{ organisation.getName() }}</h1>
+
+    <div id="prize">
+        <p>This weeks prize is {{ prize.getDescription() }} </p>
+    </div>
+
+{% endblock content %}

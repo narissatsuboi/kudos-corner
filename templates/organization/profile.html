@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div id="organization-identity">
+        <h1>Welcome to your profile, {{ organization.getName() }}</h1>
+    </div>
+
+    <div id="organization-account-info">
+        <p>Employees: 
+        <p>Add/remove employee goes here</p>
+        <p>Account type:</p>
+    </div>
+
+    <div id="update-prize">
+        <p>Current prize: {{ prize.getDescription() }}</p>
+
+        <form action="#" method="POST">
+            <label for="description">Add a new prize</label>
+            <input type="text" name="prizedescription" id="description">
+        </form>
+    </div>
+    
+{% endblock content %}
