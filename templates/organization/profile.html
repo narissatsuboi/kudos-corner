@@ -14,10 +14,11 @@
 
     <div id="update-prize">
         <p>Current prize: {{ prize.getDescription() }}</p>
-
         <form action="#" method="POST">
             <label for="description">Add a new prize</label>
-            <input type="text" name="prizedescription" id="description">
+            <input type="text" name="description" id="description">
+
+            <button type="submit">Change Prize</button>
         </form>
     </div>
     
