@@ -15,6 +15,7 @@ def dashboard(request):
 		"name": "Link",
 		"kudos_sent": 200,
 		"kudos_received": 170,
+		"ranking": "1st",
 		"current_prize": "£100"
 	}
 
