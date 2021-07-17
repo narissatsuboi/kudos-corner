@@ -12,7 +12,6 @@ def dashboard(request):
 		# "kudos_sent": request.user.kudosSent,
 		# "kudos_received": request.user.kudosReceived,      NOT YET IN MODEL
 		# "current_prize"
-		
 		"name": "Link",
 		"kudos_sent": 200,
 		"kudos_received": 170,
@@ -20,8 +19,21 @@ def dashboard(request):
 	}
 
 	org_context = {
-
+		# "name":
+		# "current_prize":
+		"name": "myOrg",
+		"current_prize": "£100"
 	}
+
+# Switch these two to toggle user/organisation pages
+	return render(request, "user/index.html", user_context)
+	# return render(request, "organization/index.html", org_context)
+
+
+	# if request.user.admin:
+	# 	return render(request, "organization/index.html", org_context)
+	# else:
+	# 	return render(request, "user/index.html", user_context)
 
 def profile(request):
 	# if not request.user.isAuthenticated:
@@ -45,10 +57,11 @@ def profile(request):
 		"prize": "£100"
 	}
 
+# Switch these two to toggle user/organisation pages
 	return render(request, "user/profile.html", user_context)
 	# return render(request, "organization/profile.html", org_context)
 
-	
+
 	# if request.user.admin:
 	# 	return render(request, "organization/profile.html", org_context)
 	# else:
@@ -68,8 +81,6 @@ def profile(request):
 # If a user is logged in (aka authenticated), then you can get their info by
 # accessing variables of (the CustomUser class) request.user
 # so name would be request.user.name and rank would be request.user.ranking
-
-
 
 
 # there is a way to force people to have to log in first, but i'll try and see if i can

@@ -2,10 +2,10 @@
 
 {% block content %}
 
-    <h1>Welcome to Kudos Corner, {{ organisation.getName() }}</h1>
+    <h1>Welcome to Kudos Corner, {{ name }}</h1>
 
     <div id="prize">
-        <p>This week's prize is {{ prize.getDescription() }} </p>
+        <p>This week's prize is {{ current_prize }} </p>
     </div>
 
 {% endblock content %}
