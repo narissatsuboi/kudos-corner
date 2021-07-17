@@ -3,7 +3,7 @@
 {% block content %}
 
     <div id="organization-identity">
-        <h1>Welcome to your profile, {{ organization.getName() }}</h1>
+        <h1>Welcome to your profile, {{ name }}</h1>
     </div>
 
     <div id="organization-account-info">
@@ -13,13 +13,17 @@
     </div>
 
     <div id="update-prize">
-        <p>Current prize: {{ prize.getDescription() }}</p>
+        <p>Current prize: {{ prize }}</p>
+        
+        
         <form action="#" method="POST">
             <label for="description">Add a new prize</label>
             <input type="text" name="description" id="description">
 
             <button type="submit">Change Prize</button>
         </form>
+
+        
     </div>
     
 {% endblock content %}
