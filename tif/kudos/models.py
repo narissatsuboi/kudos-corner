@@ -12,11 +12,12 @@ class CustomUser(AbstractUser):
 	# user statistics
 	ranking = models.IntegerField(default = 0)
 	kudosSent = models.IntegerField(default = 0)
+	kudosReceived = models.IntegerField(default = 0)
 	starsReceived = models.IntegerField(default = 0)
 	prizeCount = models.IntegerField(default = 0)
 
 	def __str__(self):
-		return self.organisation + " - " + self.name 
+		return str(self.organisation) + " - " + self.name 
 
 class Organisation(models.Model):
 	name = models.CharField(max_length = 50)
