@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <!-- switch out variables in here for variables passed in in the views -->
+
+    <h1>Welcome to Kudos Corner, {{ user.getName() }}</h1>
+
+    <div id="personal-stats">
+        <p>Kudos sent: {{ user.getKudosSent() }}</p>
+        <p>Kudos received: {{ user.getKudosReceived() }}</p>
+    </div>
+
+    <div id="ranking-visuals">
+        <p>Personal Rank: </p>
+
+        <table>
+            <p>Leaderboard goes here:</p>
+        </table>
+    </div>
+
+    <div id="prize">
+        <p>This weeks prize is {{ prize.getDescription() }} </p>
+    </div>
+
+
+    
+{% endblock content %}
