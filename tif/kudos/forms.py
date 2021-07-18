@@ -1,7 +1,7 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from django.forms.widgets import HiddenInput
 from .models import CustomUser
+from django.forms.widgets import HiddenInput
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
@@ -18,13 +18,12 @@ class UpdatePrizeForm(forms.Form):
 
     def clean_prize(self):
         data = self.cleaned_data['prize_description']
-        # do any checks for validity
         return data
 
 class SendKudoForm(forms.Form):
     NAME_CHOICES = [(int(user.id), user.name) for user in CustomUser.objects.all()]
-    message = forms.CharField(label="Message:", max_length=100)
     recipient = forms.IntegerField(label="Recipient:", widget=forms.Select(choices=NAME_CHOICES))
+    message = forms.CharField(label="Message:", max_length=100)
     
     def clean_message(self):
         data = self.cleaned_data['message']

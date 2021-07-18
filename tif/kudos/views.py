@@ -1,10 +1,9 @@
 from datetime import datetime
+from django.shortcuts import render
 from django.core.checks import messages
-
+from django.http import HttpResponse, request
 from django.http.response import HttpResponseRedirect
 from .models import CustomUser, Organisation, Prize, Kudos
-from django.http import HttpResponse, request
-from django.shortcuts import render, get_object_or_404
 from .forms import UpdatePrizeForm, SendKudoForm, RateKudoStars
 
 def login(request):
@@ -15,9 +14,10 @@ def dashboard(request):
 	# 	return render(request, "login.html")
 	
 	user = CustomUser.objects.get(name="Matthew")
+	# change to user = request.user later on
 	organisation = Organisation(name="My Organisation")
-	# change this to user = request.user later on
-	# and organisaiton?
+	
+	is_organisation = False # change to check whether user is admin in the future
 	
 	user_context = {
 		"users": CustomUser.objects.order_by('-starsReceived')[:3],
@@ -34,24 +34,19 @@ def dashboard(request):
 		"currentPrize": "N/A" if not len(Prize.objects.all()) else Prize.objects.all()[0],
 	}
 
-# Switch these two to toggle user/organisation pages
+	if is_organisation:
+		return render(request, "organization/index.html", org_context)
 	return render(request, "user/index.html", user_context)
-	# return render(request, "organization/index.html", org_context)
-	
-	# if request.user.admin:
-	# 	return render(request, "organization/index.html", org_context)
-	# else:
-	# 	return render(request, "user/index.html", user_context)
 
 def profile(request):
 	# if not request.user.isAuthenticated:
-	#	return #something something 404 error
+	#	return render(request, "login.html")
 	
 	user = CustomUser.objects.get(name="Matthew")
 	organisation = Organisation(name="My Organisation")
 	# change to user = request.user later on
 
-	is_organisation = False # change to something later
+	is_organisation = False # change to check whether user is admin in the future
 
 	if request.method == 'POST':
 		if is_organisation:
@@ -81,12 +76,9 @@ def profile(request):
 					recipientUser = CustomUser.objects.get(id=recipient)
 					recipientUser.kudosReceived += 1
 					recipientUser.save()
-				return HttpResponseRedirect('/')
 			else:
-				print("just rated a kudo")
 				form = RateKudoStars(request.POST)
 				if form.is_valid():
-					print("form is valid")
 					kudoId = form.cleaned_data['id']
 					rating = form.cleaned_data['rating']
 					print(kudoId, rating)
@@ -98,9 +90,7 @@ def profile(request):
 					recipientUser.save()
 					# remove kudo from database
 					currentKudo.delete()
-				else:
-					print("form is invalid")
-				return HttpResponseRedirect('/profile')
+			return HttpResponseRedirect('/profile')
 			
 	else:
 		# create default forms for get request
@@ -124,14 +114,6 @@ def profile(request):
 		"form": prize_form,
 	}
 
-# Switch these two to toggle user/organisation pages
 	if is_organisation:
 		return render(request, "organization/profile.html", org_context)
 	return render(request, "user/profile.html", user_context)
-
-	# if request.user.admin:
-	# 	return render(request, "organization/profile.html", org_context)
-	# else:
-	# 	return render(request, "user/profile.html", user_context)
-
-	
