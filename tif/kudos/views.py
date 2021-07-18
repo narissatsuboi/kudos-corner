@@ -8,7 +8,7 @@ def login(request):
 def dashboard(request):
 	# if not request.user.is_authenticated():
 	# 	return render(request, "login.html")
-
+	user = CustomUser.objects.get(name="Matthew")
 	user_context = {
 		# "name": request.user.name,
 		# "kudosSent": request.user.kudosSent,
@@ -16,34 +16,14 @@ def dashboard(request):
 		# "starsReceived": request.user.starsReceived
 		# "currentPrize"
 		"users": CustomUser.objects.order_by('-starsReceived')[:3],
-		"name": "Link",
-		# "kudosSent": 200,
-		# "kudosReceived": 170,
-		"starsReceived": 4,
-		"ranking": "1st",
+		"name": user.name,
+		"kudosSent": user.kudosSent,
+		"kudosReceived": user.kudosReceived,
+		"starsReceived": user.starsReceived,
+		"ranking": CustomUser.objects.filter(starsReceived__gt=user.starsReceived).count() + 1,
 		"currentPrize": "£100",
 	}
 	
-
-	# ok, so, i think we should list what we still need to do
-	# my list:
-	# i'll try update the rankings whenever the site is called just to be sure
-	# are you still planning on working with the css? or the forms haha
-	# hmm, i think the most important part is getting the forms to work
-	# but for the sending kudos thing, how do you decide who to send it to?
-	# username? email? id? 
-	
-	# i guess we can have a dropdown that displays usernames, but sends id to the db
-	# not sure how to do it in here tho
-	# ok
-
-
-	# my list rn
-	# CSS for the whole thing (basic, implement CSS grid and some borders around elements)
-	# figure out forms and how to post to db from a form in django
-	# log in page
-
-
 	org_context = {
 		# "name":
 		# "currentPrize":
@@ -54,8 +34,7 @@ def dashboard(request):
 # Switch these two to toggle user/organisation pages
 	return render(request, "user/index.html", user_context)
 	# return render(request, "organization/index.html", org_context)
-
-
+	
 	# if request.user.admin:
 	# 	return render(request, "organization/index.html", org_context)
 	# else:

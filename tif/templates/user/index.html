@@ -7,7 +7,6 @@
             <h2>Leaderboard</h2>
             
             <!-- <p>Personal Rank: {{ ranking }}</p> -->
-
             <table id="leaderboard-table">
                 <thead>
                     <tr>
@@ -17,24 +16,22 @@
                     </tr>
                 </thead>
                 {% for user in users %}
-                    <tr>
-                        <td>{{ user.ranking }}</td>
+                    <tr class="{% if user.name == name %}chosen-row{% endif %}">
+                        <td>{{ forloop.counter }}</td>
                         <td>{{ user.name }}</td>
                         <td>{{ user.starsReceived }}</td>
                     </tr>
                 {% endfor %}
-                {% if rank > 3 %}
                     <tr>
-                        <td>.</td>
-                        <td>.</td>
-                        <td>.</td>
+                        <td>⋮</td>
+                        <td>⋮</td>
+                        <td>⋮</td>
                     </tr>
-                    <tr>
-                        <td>{{rank}}</td>
-                        <td>{{name}}</td>
-                        <td>{{starsReceived}}</td>
+                    <tr class="chosen-row">
+                        <td>{{ ranking }}</td>
+                        <td>{{ name }}</td>
+                        <td>{{ starsReceived }}</td>
                     </tr>
-                {% endif %}
             </table>
         </div>
 
@@ -44,8 +41,9 @@
         </div>
 
         <div class="kudos">
-            <h3 id="sent">Kudos sent: {{ user.kudosSent }}</h3>
-            <h3 id="received">Kudos received: {{ user.kudosReceived }}</h3>
+            <div id="sent"><h2>{{ kudosSent }}</h2> sent</div>
+            <div id="received"><h2>{{ kudosReceived }}</h2> received</div>
+            <div id="stars"><h2>{{ starsReceived }}</h2> stars</div>
         </div>
     </div>
 

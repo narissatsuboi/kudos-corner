@@ -1,16 +1,15 @@
 {% extends 'base.html' %}
 
-
-<!-- yea, I'll quickly make this form then push and make a pull request, if thats ok -->
 {% block content %}
-
+    
     <div id="login-form">
         <form action="#" id="login" method="GET">
             <label for="username">Username</label>
-            <input type="text" value="" id="username">
+            <input type="text" class="form-control" value="" id="username">
             <label for="password">Password</label>
-            <input type="password" value="" id="password">
+            <input type="password" class="form-control" value="" id="password">
         </form>
+        <button class="btn btn-primary submit-login">submit</button>
     </div>
         
 {% endblock content %}
