@@ -9,9 +9,9 @@
 **Solution:** A web app that teammates can use to send each other motivating messages showing how they appreciate each other’s work effort in an effective manner
 
 ### User dashboard
-[!An example user dashboard](/tif/static/media/kudos_korner_dashboard.png?raw=true)
+[! An example user dashboard](/tif/static/media/kudos_korner_dashboard.png?raw=true)
 
 ### User profile
-[!An example user profile](/tif/static/media/kudos_korner_profile.png?raw=true)
+[! An example user profile](/tif/static/media/kudos_korner_profile.png?raw=true)
 
 
