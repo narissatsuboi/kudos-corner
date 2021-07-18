@@ -8,5 +8,5 @@ urlpatterns = [
 	path('login/', views.login, name='login')
 	
 ]
-# this is for inserting images/files from static folder
+
 urlpatterns += staticfiles_urlpatterns()

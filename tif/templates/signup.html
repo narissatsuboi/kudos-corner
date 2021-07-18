@@ -2,14 +2,17 @@
 
 {% block content %}
     
-    <div id="login-form">
-        <form action="#" id="login" method="GET">
+    <div id="signup-form">
+        <form action="#" id="signup" method="POST">
+            
             <label for="username">Username</label>
             <input type="text" class="form-control" value="" id="username">
             <label for="password">Password</label>
             <input type="password" class="form-control" value="" id="password">
+            <!-- checkbox or dropdown for organisation/regular user -->
+            
         </form>
-        <button class="btn btn-primary submit-login">Log in</button>
+        <button class="btn btn-primary submit-signup">Sign up</button>
     </div>
         
 {% endblock content %}

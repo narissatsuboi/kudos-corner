@@ -11,7 +11,6 @@ class CustomUser(AbstractUser):
 	email = models.CharField(max_length = 40)
 
 	# user statistics
-	ranking = models.IntegerField(default = 0)
 	kudosSent = models.IntegerField(default = 0)
 	kudosReceived = models.IntegerField(default = 0)
 	starsReceived = models.IntegerField(default = 0)
