@@ -6,23 +6,18 @@
         <h1>Welcome to your profile, {{ name }}</h1>
     </div>
 
-    <div id="organization-account-info">
-        <p>Employees: 
-        <p>Add/remove employee goes here</p>
-        <p>Account type:</p>
-    </div>
-
     <div id="update-prize">
         <p>Current prize: {{ prize }}</p>
-        
-        <form action="#" method="POST">
-            <label for="description">Add a new prize</label>
-            <input type="text" name="description" id="description">
-
-            <button type="submit">Change Prize</button>
+    
+        <form action="/profile/" method="POST">
+            {% csrf_token %}
+            <!-- {{form}} -->
+            <table>
+            {{ form.as_table }}
+            </table>
+            <button type="submit">Update</button>
         </form>
 
-        
     </div>
     
 {% endblock content %}

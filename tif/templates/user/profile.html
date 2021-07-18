@@ -15,29 +15,52 @@
     </div>
 
     <div id="rate-kudos">
-        <h2>Your Kudos</h1>
-        <ul>
+        <h2>Kudos Inbox {% if kudos %} - {{ kudos|length }} unread {% endif %}</h2>
+           
             {% for kudo in kudos %}
-                <li>Message: {{kudo.message}}</li>
-               
-                <button type="submit" class="btn btn-primary submit">Rate</button>
+                
+                <div class="message">
+                    <p>{{kudo.message}}</p>
+                    <form action ="" method="POST">
+                        {% csrf_token %}
+                        <!-- {{ rateKudosForm }} -->
+                        {% for field in rateKudosForm %}
+                            {% if field.is_hidden %}
+                                <input type="number" hidden="true" name="id" required="" id="id_id" value={{kudo.id}}>
+                            {% else %}
+                                {{ rateKudosForm.rating }}
+                            {% endif %}
+                        {% endfor %}
+                        {% load static %} <img width="30px" src="{% static 'media/star-icon.png' %}" alt="home" />
+                        <button type="submit" name="rateKudos" class="btn btn-primary submit">Rate</button>
+                    </form>
+                </div>
+           
             {% endfor %}
-        </ul>
+        
     </div>
 </div>
     
     <div id="send-kudos">
         <h2>Send Kudos</h2>
-        <form action="#" method="POST">
-            <label for="recipient">Recipient</label>
+        <form action="" method="POST">
+
+            {% csrf_token %}
+            <!-- {{form}} -->
+            <table>
+            {{ sendKudosForm.as_table }}
+            </table>
+            <!-- <label for="recipient">Recipient</label>
             <select name="recepient" id="recepient">
                 {% for user in users %}
                     <option value={{user.name}}>{{user.name}}</option>
                 {% endfor %}
             </select>
             <label for="message">Message</label>
-            <input type="text" name="message" id="message">
-            <button type="submit">Send</button>
+            <input type="text" name="message" id="message"> -->
+            <button type="submit" name="sendKudos">Send</button>
+
+            
         </form>
     </div>
 

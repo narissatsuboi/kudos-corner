@@ -11,7 +11,6 @@ class CustomUser(AbstractUser):
 	email = models.CharField(max_length = 40)
 
 	# user statistics
-	ranking = models.IntegerField(default = 0)
 	kudosSent = models.IntegerField(default = 0)
 	kudosReceived = models.IntegerField(default = 0)
 	starsReceived = models.IntegerField(default = 0)
@@ -36,8 +35,8 @@ class Kudos(models.Model):
 		return self.id
 
 class Prize(models.Model):
-	date = models.DateField()
+	date = models.DateField(default = datetime.date.today)
 	description = models.CharField(max_length = 100)
 
 	def __str__(self):
-		return self.id
+		return self.description
