@@ -2,22 +2,17 @@
 
 {% block content %}
 
-    <div id="organization-identity">
-        <h1>Welcome to your profile, {{ name }}</h1>
-    </div>
-
     <div id="update-prize">
+        <h1>{{ name }}</h1>
         <p>Current prize: {{ prize }}</p>
-    
+        
         <form action="/profile/" method="POST">
             {% csrf_token %}
-            <!-- {{form}} -->
             <table>
             {{ form.as_table }}
             </table>
-            <button type="submit">Update</button>
+            <button class="btn btn-primary submit submit-login" type="submit">Update</button>
         </form>
-
     </div>
     
 {% endblock content %}

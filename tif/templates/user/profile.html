@@ -3,27 +3,21 @@
 {% block content %}
 
 <div class="wrapper">
-    <div id="identity">
-        <h1>{{ name }}</h1>
-        <h3>{{ user.organisation.name }}</h3>
-    </div> 
-
     <div id="stats">
-        <h2>Your Stats</h2>
-        <p>Current ranking: {{ rank }}</p>
-        <p>Prizes won: {{ prizeCount }}</p>
-    </div>
+        <h2>{{ name }}'s Stats</h2>
+        <h4>Current ranking: {{ rank }}</h4>
+        <h4>Prizes won: {{ prizeCount }}</h4>
+    </div> 
 
     <div id="rate-kudos">
         <h2>Kudos Inbox {% if kudos %} - {{ kudos|length }} unread {% endif %}</h2>
-           
+            <div class="inbox">
             {% for kudo in kudos %}
-                
                 <div class="message">
-                    <p>{{kudo.message}}</p>
+                    <div class="message-entry">> {{kudo.message}}</div>
                     <form action ="" method="POST">
                         {% csrf_token %}
-                        <!-- {{ rateKudosForm }} -->
+                        <button type="submit" name="rateKudos" class="btn btn-primary submit">Rate</button>
                         {% for field in rateKudosForm %}
                             {% if field.is_hidden %}
                                 <input type="number" hidden="true" name="id" required="" id="id_id" value={{kudo.id}}>
@@ -32,35 +26,20 @@
                             {% endif %}
                         {% endfor %}
                         {% load static %} <img width="30px" src="{% static 'media/star-icon.png' %}" alt="home" />
-                        <button type="submit" name="rateKudos" class="btn btn-primary submit">Rate</button>
                     </form>
                 </div>
-           
             {% endfor %}
-        
+            </div>
     </div>
-</div>
     
     <div id="send-kudos">
-        <h2>Send Kudos</h2>
+        <h2 style="text-align: center;">Send Kudos</h2>
         <form action="" method="POST">
-
             {% csrf_token %}
-            <!-- {{form}} -->
             <table>
-            {{ sendKudosForm.as_table }}
+                {{ sendKudosForm.as_table}}
             </table>
-            <!-- <label for="recipient">Recipient</label>
-            <select name="recepient" id="recepient">
-                {% for user in users %}
-                    <option value={{user.name}}>{{user.name}}</option>
-                {% endfor %}
-            </select>
-            <label for="message">Message</label>
-            <input type="text" name="message" id="message"> -->
-            <button type="submit" name="sendKudos">Send</button>
-
-            
+            <button type="submit" name="sendKudos" class="btn btn-primary submit send">Send</button>
         </form>
     </div>
 
