@@ -15,14 +15,21 @@
     </div>
 
     <div id="rate-kudos">
-        <h2>Your Kudos</h1>
-        <ul>
+        <h2>Kudos Inbox {% if kudos %} - {{ kudos|length }} unread {% endif %}</h2>
             {% for kudo in kudos %}
-                <li>Message: {{kudo.message}}</li>
-               
-                <button type="submit" class="btn btn-primary submit">Rate</button>
+                <div class="message">
+                    <p>{{kudo.message}}</p>
+                    <select class="form-control rating" name="rating" id="rating-{{kudo.id}}">
+                        <option value=1>1</option>
+                        <option value=2>2</option>
+                        <option value=3>3</option>
+                        <option value=4>4</option>
+                        <option value=5>5</option>
+                    </select>
+                    {% load static %} <img width="30px" src="{% static 'media/star-icon.png' %}" alt="home" />
+                    <button type="submit" class="btn btn-primary submit">Rate</button>
+                </div>
             {% endfor %}
-        </ul>
     </div>
 </div>
     
